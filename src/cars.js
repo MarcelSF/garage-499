@@ -35,29 +35,23 @@ const fetchCars = () => {
 const postToApi = (newCar) => {
   const url = 'https://wagon-garage-api.herokuapp.com/batch-499/cars';
   fetch(url, {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify(newCar)
+    method: 'POST', // POST request
+    headers: {'Content-Type': 'application/json'}, // Tell the SERVER to expect a JSON type body.
+    body: JSON.stringify(newCar) // We need to send a string/text in the body, not an actual JSON.
   })
 }
 
 const postNewCar = () => {
   const form = document.querySelector('.car-form');
-  const newCar = {};
+  const newCar = {}; // new JS object that will be stringified in postToApi
   newCar.brand = form.querySelector('#brand').value;
   newCar.model = form.querySelector('#model').value;
   newCar.owner = form.querySelector('#owner').value;
   newCar.plate = form.querySelector('#plate').value;
   postToApi(newCar)
-  form.reset();
+  form.reset; // reseting the form after posting
 }
 
-// Add a new car through the form!
 
-// Add an event listener to the form
-// Prevent the default behavior otherwise the page will reload
-// Get the data from the FORM, user inputs
-// POST request to the API server with the BODY (Follow the documentation)
-// Refresh the car list
 
 export { fetchCars, postNewCar }
